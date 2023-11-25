@@ -16,11 +16,11 @@
 <body class="wrapper">
   <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="row rounded-5 shadow p-4 bg-white bg-opacity-75" style="width: 500px">
-      <form action="checkLogin.php" method="post" novalidate>
+      <form action="checkLogin.php" method="post" novalidate >
         <div
           class="featured-image d-flex flex-column justify-content-center align-items-center mb-3 mainBG p-2 rounded-4 ">
           <div class=" rounded-3 p-2 shadow bg-light bg-opacity-25 d-flex  justify-content-center align-items-center">
-            <img src="411766_1c2bb3d0f20c4b209b5b9b5cba70b462~mv2.webp" style="width: 65px" />
+            <img src="football.webp" style="width: 65px" />
             <h1>Stadiums</h1>
           </div>
         </div>

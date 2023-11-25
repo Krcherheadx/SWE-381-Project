@@ -122,7 +122,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["first_name"]) && isset($_SE
             <div class="modal fade" id="addingStadium">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content p-3 rounded-4 ">
-                        <div class="modal-header h3 justify-content-center">Adding a new Stadium</div>
+                        <div class="modal-header h2 justify-content-center">Adding a new Stadium</div>
                         <div class="modal-body">
                             <form action="addStadium.php" method="post" novalidate enctype="multipart/form-data">
 
@@ -138,9 +138,21 @@ if (isset($_SESSION["username"]) && isset($_SESSION["first_name"]) && isset($_SE
                                     <label for="stadiumDescription">Stadium Description</label>
                                 </div>
                                 <hr class="hr">
+                                <h5>Stadium's location:</h5>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text">Country</span>
+                                    <input type="text" class="form-control" name="countryName" required>
+                                    <span class="input-group-text">City</span>
+                                    <input type="text" class="form-control" name="cityName" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Street address</span>
+                                    <input type="text" class="form-control" name="street" required>
+                                </div>
+                                <hr class="hr">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Number of seats:</span>
-                                    <input type="number" id="numOfSeats" class="form-control" min="10" max="100"
+                                    <input type="number" id="numOfSeats" class="form-control" min="0" max="100000"
                                         name="numOfSeats" required>
                                     <span class="input-group-text">seats</span>
                                 </div>
@@ -194,13 +206,15 @@ if (isset($_SESSION["username"]) && isset($_SESSION["first_name"]) && isset($_SE
                                 </script>
 
                                 <div class=" mb-3">
+                                    <hr class="hr">
                                     <label for="stadiumImages" class="form-label">Please insert stadium's
                                         images:</label>
                                     <input type="file" id="stadiumImages" class="form-control" name="stadiumImages[]"
                                         accept=".png, .jpg, .jpeg" required multiple>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="submit" name="submit">
+                                    <input type="submit" name="submit" class="form-control btn-primary btn  ">
+
                                 </div>
                             </form>
                         </div>
@@ -279,6 +293,21 @@ if (isset($_SESSION["username"]) && isset($_SESSION["first_name"]) && isset($_SE
 
                             </div>
                             <hr class="hr">
+                            <h5>Stadium's location:</h5>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Country</span>
+                                <input type="text" class="form-control" name="countryName"
+                                    value="<?php echo $row['stadium_country'] ?>" disabled>
+                                <span class="input-group-text">City</span>
+                                <input type="text" class="form-control" name="cityName"
+                                    value="<?php echo $row['stadium_city'] ?>" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Street address</span>
+                                <input type="text" class="form-control" name="street"
+                                    value="<?php echo $row['stadium_street'] ?>" disabled>
+                            </div>
+                            <hr class="hr">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Number of seats:</span>
                                 <input type="number" id="numOfSeats" class="form-control" disabled
@@ -354,18 +383,18 @@ if (isset($_SESSION["username"]) && isset($_SESSION["first_name"]) && isset($_SE
                                         let month = date.getMonth() + 1;
                                         let year = date.getFullYear();
                                         let Days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                                        if (day == 7)
+                                            day = 0;
+                                        if (getDate == 31) {
+                                            getDate = 1;
+                                            month++;
+                                        }
                                         for (let i = 1; i <= 7; i++) {
                                             let dateTmp = getDate++ + "/" + month + "/" + year;
                                             document.getElementById('btn-check' + i).setAttribute('value', dateTmp)
                                             document.getElementById('a' + i).append(Days[day++]);
                                             document.getElementById('b' + i).append(dateTmp);
 
-                                            if (day == 7)
-                                                day = 0;
-                                            if (getDate == 31) {
-                                                getDate = 1;
-                                                month++;
-                                            }
                                             <?php
                                             if ($_SESSION["account_type"] === "owner") {
                                                 ?>
@@ -390,7 +419,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["first_name"]) && isset($_SE
                                                     temppp.setAttribute("disabled", "");
                                                     temppp = document.querySelector(`label[for=${temppp.id}]`);
                                                     <?php
-                                                    if ($value['stadium_renter'] === $_SESSION["username"]) { ?>
+                                                    if ($value['stadium_renter'] === $_SESSION["username"] || $_SESSION["account_type"] === "owner") { ?>
                                                         if (temppp.classList.contains('btn-primary')) {
                                                             temppp.classList.remove('btn-primary');
                                                             temppp.classList.add('btn-success');

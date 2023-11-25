@@ -19,7 +19,7 @@
       <div
         class="col-md-6 left-box rounded-4 d-flex justify-content-center align-items-center flex-column shadow mainBG">
         <div class="featured-image mb-3">
-          <img src="411766_1c2bb3d0f20c4b209b5b9b5cba70b462~mv2.webp" class="img-fluid" style="width: 250px" alt="" />
+          <img src="football.webp" class="img-fluid" style="width: 250px" alt="" />
         </div>
         <p class="fs-3">Join Us Now !</p>
         <small class="mb-3 c-white fs-5">A huge opprtunity is waiting you!</small>
@@ -88,8 +88,8 @@
             </div>
 
             <div class="form-check mb-1">
-              <input type="radio" class="form-check-input" value="admin" name="accountType" id="check1" required />
-              <label for="check1" class="form-check-label">Adminstrator</label>
+              <input type="radio" class="form-check-input" value="owner" name="accountType" id="check1" required />
+              <label for="check1" class="form-check-label">Owner</label>
             </div>
 
 
